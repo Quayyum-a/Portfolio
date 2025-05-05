@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quayyum Ariyo | Back-End Engineer & Innovator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                        accent: '#F59E0B',
+                        dark: '#1E293B',
+                        light: '#F8FAFC'
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.5s ease-out'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        .dark-mode-transition {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dark .project-card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .profile-pic {
+            background: linear-gradient(135deg, #3B82F6, #10B981);
+        }
+        
+        .skill-bar {
+            height: 8px;
+            border-radius: 4px;
+        }
+        
+        .contact-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+        }
+        
+        .dark .contact-input:focus {
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.8);
+        }
+        
+        .animate-delay-100 {
+            animation-delay: 0.1s;
+        }
+        
+        .animate-delay-200 {
+            animation-delay: 0.2s;
+        }
+        
+        .animate-delay-300 {
+            animation-delay: 0.3s;
+        }
+        
+        .section-divider {
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #3B82F6, #10B981);
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 dark-mode-transition dark:bg-dark dark:text-light">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/80 dark:bg-dark/80 backdrop-blur-md z-50 shadow-sm dark:shadow-gray-800/20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="text-xl font-bold text-primary dark:text-accent">Quayyum Ariyo</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-accent transition">About</a>
+                    <a href="#skills" class="text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-accent transition">Skills</a>
+                    <a href="#projects" class="text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-accent transition">Projects</a>
+                    <a href="#vision" class="text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-accent transition">Vision</a>
+                    <a href="#contact" class="text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-accent transition">Contact</a>
+                    <button id="theme-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:inline"></i>
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="p-2 rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 shadow-lg rounded-b-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">About</a>
+                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">Skills</a>
+                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">Projects</a>
+                <a href="#vision" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">Vision</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">Contact</a>
+                <div class="px-3 py-2">
+                    <button id="mobile-theme-toggle" class="w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">
+                        <span>Toggle Theme</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 md:pt-32 md:pb-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0 animate-fade-in">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Hey, I'm <span class="text-primary dark:text-accent">Quayyum Ariyo</span></h1>
+                <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-gray-600 dark:text-gray-300">Solving Problems, One Line of Code at a Time</h2>
+                <p class="text-lg mb-8 text-gray-600 dark:text-gray-300">
+                    Aspiring back-end software engineer and innovator from Nigeria, currently training at Semicolon Africa to become a full-stack developer. Passionate about building solutions that matter.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#contact" class="px-6 py-3 bg-primary hover:bg-blue-700 text-white rounded-lg font-medium transition shadow-lg hover:shadow-xl">Get In Touch</a>
+                    <a href="#" id="download-resume" class="px-6 py-3 border border-primary text-primary dark:text-accent hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg font-medium transition">Download Resume</a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center animate-fade-in animate-delay-100">
+                <div class="profile-pic w-64 h-64 rounded-full flex items-center justify-center shadow-xl">
+                    <span class="text-white text-6xl font-bold">QA</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto bg-gray-100 dark:bg-gray-800 rounded-xl">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4">About Me</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
+                <div class="profile-pic w-48 h-48 rounded-full flex items-center justify-center shadow-lg">
+                    <span class="text-white text-5xl font-bold">QA</span>
+                </div>
+            </div>
+            <div class="md:w-2/3 md:pl-12">
+                <p class="text-lg mb-6 text-gray-700 dark:text-gray-300">
+                    I'm a passionate software developer with a strong focus on back-end technologies, currently specializing in Java (JDK 21), Python, and JavaScript. My journey at Semicolon Africa has equipped me with structured problem-solving skills and a deep appreciation for clean, efficient code.
+                </p>
+                <p class="text-lg mb-6 text-gray-700 dark:text-gray-300">
+                    Beyond coding, I'm fascinated by the intersection of technology and real-world problems. Whether it's creating privacy-focused applications or tackling food waste through innovation, I believe software should make tangible improvements to people's lives.
+                </p>
+                <div class="grid grid-cols-2 gap-4 mt-8">
+                    <div class="flex items-center">
+                        <i class="fas fa-map-marker-alt text-primary dark:text-accent mr-3 text-xl"></i>
+                        <span class="text-gray-700 dark:text-gray-300">Lagos, Nigeria</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-graduation-cap text-primary dark:text-accent mr-3 text-xl"></i>
+                        <span class="text-gray-700 dark:text-gray-300">Semicolon Africa</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-code text-primary dark:text-accent mr-3 text-xl"></i>
+                        <span class="text-gray-700 dark:text-gray-300">Back-End Focus</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-heart text-primary dark:text-accent mr-3 text-xl"></i>
+                        <span class="text-gray-700 dark:text-gray-300">Innovation & Problem Solving</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4">My Skills</h2>
+            <div class="section-divider"></div>
+            <p class="text-xl text-gray-600 dark:text-gray-300 mt-6 max-w-2xl mx-auto">
+                Continuously expanding my toolkit to build better, more efficient solutions.
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Technical Skills -->
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md animate-slide-up">
+                <h3 class="text-xl font-semibold mb-6 text-primary dark:text-accent flex items-center">
+                    <i class="fas fa-code mr-3"></i> Technical Skills
+                </h3>
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">Java (JDK 21+)</span>
+                            <span class="text-primary dark:text-accent">90%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full">
+                            <div class="skill-bar bg-primary dark:bg-accent rounded-full" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">Python</span>
+                            <span class="text-primary dark:text-accent">85%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full">
+                            <div class="skill-bar bg-primary dark:bg-accent rounded-full" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">JavaScript</span>
+                            <span class="text-primary dark:text-accent">80%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full">
+                            <div class="skill-bar bg-primary dark:bg-accent rounded-full" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">HTML/CSS</span>
+                            <span class="text-primary dark:text-accent">75%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full">
+                            <div class="skill-bar bg-primary dark:bg-accent rounded-full" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Professional Skills -->
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md animate-slide-up animate-delay-100">
+                <h3 class="text-xl font-semibold mb-6 text-primary dark:text-accent flex items-center">
+                    <i class="fas fa-brain mr-3"></i> Professional Skills
+                </h3>
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">Problem Solving</span>
+                            <span class="text-primary dark:text-accent">95%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full">
+                            <div class="skill-bar bg-primary dark:bg-accent rounded-full" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">UML Design</span>
+                            <span class="text-primary dark:text-accent">85%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full">
+                            <div class="skill-bar bg-primary dark:bg-accent rounded-full" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">Back-End Development</span>
+                            <span class="text-primary dark:text-accent">90%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full">
+                            <div class="skill-bar bg-primary dark:bg-accent rounded-full" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">Algorithm Design</span>
+                            <span class="text-primary dark:text-accent">88%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full">
+                            <div class="skill-bar bg-primary dark:bg-accent rounded-full" style="width: 88%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Coding Platforms -->
+        <div class="mt-12 bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md animate-slide-up animate-delay-200">
+            <h3 class="text-xl font-semibold mb-6 text-primary dark:text-accent flex items-center">
+                <i class="fas fa-laptop-code mr-3"></i> Coding Platforms
+            </h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <a href="#" class="flex flex-col items-center p-4 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/LeetCode_logo_black.png" alt="LeetCode" class="h-12 mb-2">
+                    <span class="text-center">LeetCode</span>
+                </a>
+                <a href="#" class="flex flex-col items-center p-4 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/HackerRank_logo.png" alt="HackerRank" class="h-12 mb-2">
+                    <span class="text-center">HackerRank</span>
+                </a>
+                <a href="#" class="flex flex-col items-center p-4 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Codeforces_logo.svg" alt="Codeforces" class="h-12 mb-2">
+                    <span class="text-center">Codeforces</span>
+                </a>
+                <a href="#" class="flex flex-col items-center p-4 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/GitHub_Logo.png" alt="GitHub" class="h-8 mb-2">
+                    <span class="text-center">GitHub</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto bg-gray-100 dark:bg-gray-800">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4">My Projects</h2>
+            <div class="section-divider"></div>
+            <p class="text-xl text-gray-600 dark:text-gray-300 mt-6 max-w-2xl mx-auto">
+                My Ideas, My Code, My Impact
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- ONCE Project -->
+            <div class="project-card bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg transition duration-300 animate-slide-up">
+                <div class="h-48 bg-gradient-to-r from-blue-500 to-green-400 flex items-center justify-center">
+                    <i class="fas fa-lock-open text-white text-6xl"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2 text-primary dark:text-accent">ONCE</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        A secure messaging app where messages are view-once, real-time, and privacy-focused (no phone numbers, no screenshots allowed, and messages disappear).
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm">Java</span>
+                        <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full text-sm">Privacy</span>
+                        <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full text-sm">Encryption</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500 dark:text-gray-400">Back-End Architect</span>
+                        <a href="#" class="text-primary dark:text-accent hover:underline">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- WasteLess Project -->
+            <div class="project-card bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg transition duration-300 animate-slide-up animate-delay-100">
+                <div class="h-48 bg-gradient-to-r from-green-500 to-yellow-400 flex items-center justify-center">
+                    <i class="fas fa-recycle text-white text-6xl"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2 text-primary dark:text-accent">WasteLess</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        An AI-driven food expiry manager that reduces food waste by tracking expiry dates, suggesting recipes, and connecting users to local food banks.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full text-sm">Python</span>
+                        <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 rounded-full text-sm">AI</span>
+                        <span class="px-3 py-1 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 rounded-full text-sm">Sustainability</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500 dark:text-gray-400">Full Concept</span>
+                        <a href="#" class="text-primary dark:text-accent hover:underline">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Firearm Project -->
+            <div class="project-card bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg transition duration-300 animate-slide-up animate-delay-200">
+                <div class="h-48 bg-gradient-to-r from-purple-500 to-pink-400 flex items-center justify-center">
+                    <i class="fas fa-fire text-white text-6xl"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2 text-primary dark:text-accent">Firearm</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        A current web project being built with Durable, showcasing my HTML/CSS learning journey with interactive elements and modern design principles.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full text-sm">HTML/CSS</span>
+                        <span class="px-3 py-1 bg-pink-100 dark:bg-pink-900 text-pink-800 dark:text-pink-200 rounded-full text-sm">Front-End</span>
+                        <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 rounded-full text-sm">Learning</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500 dark:text-gray-400">In Progress</span>
+                        <a href="#" class="text-primary dark:text-accent hover:underline">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Farm-to-City Project -->
+            <div class="project-card bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg transition duration-300 animate-slide-up">
+                <div class="h-48 bg-gradient-to-r from-yellow-500 to-orange-400 flex items-center justify-center">
+                    <i class="fas fa-truck text-white text-6xl"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2 text-primary dark:text-accent">Farm-to-City</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        A concept to deliver fresh produce using eco-friendly trucks with smart temperature-regulating covers to reduce food spoilage during transport.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 rounded-full text-sm">IoT</span>
+                        <span class="px-3 py-1 bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 rounded-full text-sm">Logistics</span>
+                        <span class="px-3 py-1 bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-200 rounded-full text-sm">Sustainability</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500 dark:text-gray-400">Concept Stage</span>
+                        <a href="#" class="text-primary dark:text-accent hover:underline">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Game Development -->
+            <div class="project-card bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg transition duration-300 animate-slide-up animate-delay-100">
+                <div class="h-48 bg-gradient-to-r from-red-500 to-purple-400 flex items-center justify-center">
+                    <i class="fas fa-gamepad text-white text-6xl"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2 text-primary dark:text-accent">Game Development</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        Exploring game development with Java and JavaScript, creating interactive experiences that blend storytelling with technical challenges.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 rounded-full text-sm">Java</span>
+                        <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full text-sm">JavaScript</span>
+                        <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm">Creative</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500 dark:text-gray-400">Passion Project</span>
+                        <a href="#" class="text-primary dark:text-accent hover:underline">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- More to Come -->
+            <div class="project-card bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg transition duration-300 animate-slide-up animate-delay-200">
+                <div class="h-48 bg-gradient-to-r from-gray-500 to-blue-400 flex items-center justify-center">
+                    <i class="fas fa-lightbulb text-white text-6xl"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2 text-primary dark:text-accent">More to Come</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        Continuously working on new ideas and projects that push boundaries and solve real problems. Stay tuned for updates!
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 rounded-full text-sm">Innovation</span>
+                        <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm">Future</span>
+                        <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full text-sm">Growth</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500 dark:text-gray-400">Coming Soon</span>
+                        <a href="#contact" class="text-primary dark:text-accent hover:underline">Get Updates →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section id="vision" class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4">My Vision</h2>
+            <div class="section-divider"></div>
+            <p class="text-xl text-gray-600 dark:text-gray-300 mt-6 max-w-2xl mx-auto">
+                Where I'm headed and what drives me forward
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Career Goals -->
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md animate-slide-up">
+                <div class="flex items-center mb-6">
+                    <div class="bg-primary dark:bg-accent text-white p-3 rounded-full mr-4">
+                        <i class="fas fa-bullseye text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold">Career Goals</h3>
+                </div>
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-primary dark:text-accent mt-1 mr-3"></i>
+                        <span>Work at NVIDIA as a software engineer, contributing to cutting-edge technology</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-primary dark:text-accent mt-1 mr-3"></i>
+                        <span>Lead development teams in creating impactful software solutions</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-primary dark:text-accent mt-1 mr-3"></i>
+                        <span>Specialize in performance optimization and system architecture</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Innovation Goals -->
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md animate-slide-up animate-delay-100">
+                <div class="flex items-center mb-6">
+                    <div class="bg-primary dark:bg-accent text-white p-3 rounded-full mr-4">
+                        <i class="fas fa-lightbulb text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold">Innovation Goals</h3>
+                </div>
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-primary dark:text-accent mt-1 mr-3"></i>
+                        <span>Build privacy-focused tools that respect user data</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-primary dark:text-accent mt-1 mr-3"></i>
+                        <span>Develop applications that address food sustainability</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-primary dark:text-accent mt-1 mr-3"></i>
+                        <span>Create productivity tools that leverage AI responsibly</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Learning Goals -->
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md animate-slide-up">
+                <div class="flex items-center mb-6">
+                    <div class="bg-primary dark:bg-accent text-white p-3 rounded-full mr-4">
+                        <i class="fas fa-book text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold">Learning Goals</h3>
+                </div>
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-primary dark:text-accent mt-1 mr-3"></i>
+                        <span>Master advanced Java concepts and frameworks</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-primary dark:text-accent mt-1 mr-3"></i>
+                        <span>Deepen knowledge of system design and architecture</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-primary dark:text-accent mt-1 mr-3"></i>
+                        <span>Improve front-end skills to become truly full-stack</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Community Goals -->
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md animate-slide-up animate-delay-100">
+                <div class="flex items-center mb-6">
+                    <div class="bg-primary dark:bg-accent text-white p-3 rounded-full mr-4">
+                        <i class="fas fa-users text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold">Community Goals</h3>
+                </div>
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-primary dark:text-accent mt-1 mr-3"></i>
+                        <span>Contribute to open-source projects that benefit Africa</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-primary dark:text-accent mt-1 mr-3"></i>
+                        <span>Mentor aspiring developers in Nigeria</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-primary dark:text-accent mt-1 mr-3"></i>
+                        <span>Promote ethical software development practices</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Interests -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto bg-gray-100 dark:bg-gray-800 rounded-xl">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4">Personal Interests</h2>
+            <div class="section-divider"></div>
+            <p class="text-xl text-gray-600 dark:text-gray-300 mt-6 max-w-2xl mx-auto">
+                Beyond code - what makes me tick
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Gaming -->
+            <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-md text-center animate-slide-up">
+                <div class="bg-primary/10 dark:bg-accent/10 text-primary dark:text-accent p-4 rounded-full inline-block mb-4">
+                    <i class="fas fa-gamepad text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Video Games</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    Passionate about gaming and aspiring to develop my own games that combine compelling storytelling with innovative mechanics.
+                </p>
+            </div>
+            
+            <!-- Automotive -->
+            <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-md text-center animate-slide-up animate-delay-100">
+                <div class="bg-primary/10 dark:bg-accent/10 text-primary dark:text-accent p-4 rounded-full inline-block mb-4">
+                    <i class="fas fa-car text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Automotive Dreams</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    My first car goal: A 2013 Mercedes-Benz CLS 63 AMG - a perfect blend of performance and luxury that inspires my work ethic.
+                </p>
+            </div>
+            
+            <!-- Tech Trends -->
+            <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-md text-center animate-slide-up animate-delay-200">
+                <div class="bg-primary/10 dark:bg-accent/10 text-primary dark:text-accent p-4 rounded-full inline-block mb-4">
+                    <i class="fas fa-microchip text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Tech Trends</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    Fascinated by advancements in AI, privacy tech, and sustainable technology solutions that can transform industries.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4">Get In Touch</h2>
+            <div class="section-divider"></div>
+            <p class="text-xl text-gray-600 dark:text-gray-300 mt-6 max-w-2xl mx-auto">
+                Have a project in mind or want to connect? I'd love to hear from you.
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <!-- Contact Form -->
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md animate-slide-up">
+                <h3 class="text-xl font-semibold mb-6">Send Me a Message</h3>
+                <form id="contact-form" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your Name</label>
+                        <input type="text" id="name" name="name" class="contact-input w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary dark:focus:ring-accent dark:bg-gray-700" required>
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your Email</label>
+                        <input type="email" id="email" name="email" class="contact-input w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary dark:focus:ring-accent dark:bg-gray-700" required>
+                    </div>
+                    <div>
+                        <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Subject</label>
+                        <input type="text" id="subject" name="subject" class="contact-input w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary dark:focus:ring-accent dark:bg-gray-700" required>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your Message</label>
+                        <textarea id="message" name="message" rows="5" class="contact-input w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary dark:focus:ring-accent dark:bg-gray-700" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-primary hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition shadow-lg hover:shadow-xl">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Contact Info -->
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md animate-slide-up animate-delay-100">
+                <h3 class="text-xl font-semibold mb-6">Contact Information</h3>
+                <div class="space-y-6">
+                    <div class="flex items-start">
+                        <div class="bg-primary/10 dark:bg-accent/10 text-primary dark:text-accent p-3 rounded-full mr-4">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-gray-700 dark:text-gray-300">Email</h4>
+                            <a href="mailto:quayyumariyo@gmail.com" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-accent transition">quayyumariyo@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="bg-primary/10 dark:bg-accent/10 text-primary dark:text-accent p-3 rounded-full mr-4">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-gray-700 dark:text-gray-300">Location</h4>
+                            <p class="text-gray-600 dark:text-gray-400">Lagos, Nigeria</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="bg-primary/10 dark:bg-accent/10 text-primary dark:text-accent p-3 rounded-full mr-4">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-gray-700 dark:text-gray-300">Education</h4>
+                            <p class="text-gray-600 dark:text-gray-400">Semicolon Africa</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Full-Stack Developer Program</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12">
+                    <h4 class="font-medium text-gray-700 dark:text-gray-300 mb-4">Connect With Me</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-gray-100 dark:bg-gray-700 p-3 rounded-full text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white dark:hover:bg-accent transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="bg-gray-100 dark:bg-gray-700 p-3 rounded-full text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white dark:hover:bg-accent transition">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="bg-gray-100 dark:bg-gray-700 p-3 rounded-full text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white dark:hover:bg-accent transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="bg-gray-100 dark:bg-gray-700 p-3 rounded-full text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white dark:hover:bg-accent transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="mt-8">
+                    <button id="download-resume-2" class="w-full flex items-center justify-center px-6 py-3 border border-primary text-primary dark:text-accent hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg font-medium transition">
+                        <i class="fas fa-download mr-2"></i>
+                        Download Resume
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 dark:bg-gray-800 py-8 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <a href="#" class="text-xl font-bold text-primary dark:text-accent">Quayyum Ariyo</a>
+                    <p class="text-gray-600 dark:text-gray-400 mt-2">Back-End Engineer & Innovator</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#about" class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-accent transition">About</a>
+                    <a href="#skills" class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-accent transition">Skills</a>
+                    <a href="#projects" class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-accent transition">Projects</a>
+                    <a href="#contact" class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-accent transition">Contact</a>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700 text-center text-gray-500 dark:text-gray-400">
+                <p>&copy; <span id="current-year"></span> Quayyum Ariyo. All rights reserved.</p>
+                <p class="mt-2 text-sm">Built with passion and a vision for the future.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        // Check for saved theme preference or use preferred color scheme
+        if (localStorage.getItem('color-theme') === 'dark' || (!localStorage.getItem('color-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+        
+        // Theme toggle button
+        themeToggle.addEventListener('click', function() {
+            // Toggle between light and dark mode
+            document.documentElement.classList.toggle('dark');
+            
+            // Save preference to localStorage
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.setItem('color-theme', 'dark');
+            } else {
+                localStorage.setItem('color-theme', 'light');
+            }
+        });
+        
+        // Mobile theme toggle
+        mobileThemeToggle.addEventListener('click', function() {
+            // Toggle between light and dark mode
+            document.documentElement.classList.toggle('dark');
+            
+            // Save preference to localStorage
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.setItem('color-theme', 'dark');
+            } else {
+                localStorage.setItem('color-theme', 'light');
+            }
+            
+            // Close mobile menu
+            mobileMenu.classList.add('hidden');
+        });
+        
+        // Mobile menu toggle
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Contact form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Here you would typically send the form data to a server
+            // For this example, we'll just show an alert
+            alert(`Thank you, ${name}! Your message has been received. I'll get back to you at ${email} soon.`);
+            
+            // Reset form
+            this.reset();
+        });
+        
+        // Download resume buttons
+        document.getElementById('download-resume').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Resume download would start here. In a real implementation, this would download a PDF file.');
+        });
+        
+        document.getElementById('download-resume-2').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Resume download would start here. In a real implementation, this would download a PDF file.');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-slide-up, .animate-fade-in');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+        
+        // Run once on page load
+        animateOnScroll();
+        
+        // Run on scroll
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
+</body>
+</html>
